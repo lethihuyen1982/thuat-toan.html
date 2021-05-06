@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuat toan 1</title>
+</head>
+<body>
+    <script>
+      let bullets = randomBullets(100)
+      printBullet(bullets)
+      bullets = removeAll(bullets, function (bullet) {
+        return isOutOfViewPort(bullet) || isOutOfEnerfy(bullet)
+      })
+      printBullet(bullets)
+  
+      function removeAll(arr, criterial) {
+        let temp = []
+        for (let i = 0, j = 0; i < arr.length; i++) {
+          if (!criterial(arr[i])) {
+            temp[j] = arr[i]
+            j++
+          }
+        }
+        return temp
+      }
+  
+      function randomBullets(count) {
+        let bullets = []
+        for (let i = 0; i < count; i++) {
+          bullets[i] = randomBullet()
+        }
+        return bullets
+      }
+  
+      function randomBullet() {
+        let bullet = {}
+        bullet.x = Math.round(Math.random() * 200 - 100)
+        bullet.y = Math.round(Math.random() * 200 - 100)
+        bullet.energy = Math.round(Math.random() * 10)
+        return bullet
+      }
+  
+      function printBullet(bullets) {
+        let msg = "["
+        for (let i = 0; i < bullets.length; i++) {
+          let bullet = bullets[i]
+          msg += `{${bullet.x}, ${bullet.y}, ${bullet.energy}}`
+        }
+        msg += "]"
+        console.log(msg)
+      }
+  
+      function isOutOfViewPort(bullet) {
+        return bullet.x > 10 || bullet.x < -10 || bullet.y > 10 || bullet.y < -10
+      }
+  
+      function isOutOfEnerfy(bullet) {
+        return bullet.energy <= 0
+      }
+    </script>
+  </body>
+</html>
