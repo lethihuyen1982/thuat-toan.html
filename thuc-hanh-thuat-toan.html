@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = randArray(10, -10, 10)
+        print(arr)
+
+        // sort
+        //bubbleSort()
+
+        //selectionSort()
+
+        insertionSort()
+        print(arr)
+
+        function randArray(count, min, max) {
+            let arr = []
+            for (let i = 0; i < count; i++) {
+                arr[i] = Math.round(Math.random() * (max - min) - max)
+            }
+            return arr
+        }
+
+        function insertionSort() {
+            let theFirstUnsortedIndex = 1
+            for(;theFirstUnsortedIndex < arr.length;theFirstUnsortedIndex ++) {
+                let currentValue = arr[theFirstUnsortedIndex];
+                let sortedIndex = theFirstUnsortedIndex - 1
+                if(currentValue<arr[sortedIndex]) {
+                    swap(theFirstUnsortedIndex,sortedIndex)
+                }
+            }
+        }
+
+        function selectionSort() {
+            for (let unsortedIndex = 0; unsortedIndex < arr.length; unsortedIndex++) {
+                let minIndex = unsortedIndex
+                for (let i = unsortedIndex + 1; i < arr.length; i++) {
+                    if (arr[minIndex] > arr[i]) {
+                        minIndex = i
+                    }
+                }
+                swap(unsortedIndex,minIndex)
+            }
+        }
+        function bubbleSort() {
+            for (let limit = arr.length - 1; limit > 0; limit--) {
+                for (let i = 0; i < limit; i++) {
+                    let orderIsRight = arr[i] < arr[i + 1]
+                    if (!orderIsRight) {
+                        swap(i, i + 1)
+                    }
+                }
+            }
+        }
+
+        function swap(i1, i2) {
+            let temp = arr[i1]
+            arr[i1] = arr[i2]
+            arr[i2] = temp
+        }
+
+        function print(o) {
+            console.log(JSON.stringify(o))
+        }
+    </script>
+</body>
+
+</html>
