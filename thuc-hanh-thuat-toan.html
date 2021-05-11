@@ -30,13 +30,15 @@
         }
 
         function insertionSort() {
-            let theFirstUnsortedIndex = 1
-            for(;theFirstUnsortedIndex < arr.length;theFirstUnsortedIndex ++) {
+            
+            for(let theFirstUnsortedIndex = 1;theFirstUnsortedIndex < arr.length;theFirstUnsortedIndex ++) {
                 let currentValue = arr[theFirstUnsortedIndex];
                 let sortedIndex = theFirstUnsortedIndex - 1
-                if(currentValue<arr[sortedIndex]) {
-                    swap(theFirstUnsortedIndex,sortedIndex)
+                while(sortedIndex >=0 && arr[sortedIndex]>currentValue) {
+                    arr[sortedIndex+1] =arr[sortedIndex]
+                    sortedIndex --
                 }
+                arr[sortedIndex+1] =currentValue
             }
         }
 
